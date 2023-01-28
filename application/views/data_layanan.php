@@ -1,6 +1,6 @@
 <div class="content-padder content-background">
 	<div class="uk-section-small uk-section-default header">
-		<div class="uk-container uk-container-large">
+		<div class="uk-container uk-container-large py-1">
 			<h2><span uk-icon="icon: pencil; ratio: 2"></span> <?= $judul ?></h2>
 		</div>
 	</div>
@@ -39,9 +39,16 @@
 				<div class="uk-card uk-card-default uk-card-body uk-width-1-1@m">
 					<form class="uk-form-stacked" id="submitdata" method="post">
 						<div class="uk-margin">
-							<label class="uk-form-label" for="form-stacked-text">Kecamatan </label>
+							<label class="uk-form-label" for="form-stacked-text">Nama </label>
 							<div class="uk-form-controls">
 								<input class="uk-input" id="id" name="id" type="hidden">
+								<input class="uk-input" id="nama" name="nama" type="text" placeholder="Nama Kedai Kopi ">
+							</div>
+						</div>
+
+						<div class="uk-margin">
+							<label class="uk-form-label" for="form-stacked-text">Kecamatan </label>
+							<div class="uk-form-controls">
 								<input class="uk-input" id="kecamatan" name="kecamatan" type="text" placeholder="Kecamatan ">
 							</div>
 						</div>
@@ -76,17 +83,19 @@
 							</div>
 						</div>
 
-						<div class="uk-margin">
+						<input class="uk-input" id="kategori" name="kategori" type="hidden" value="0">
+
+						<!-- <div class="uk-margin d-none">
 							<label class="uk-form-label" for="form-stacked-text">Kategori</label>
 							<div class="uk-form-controls">
 								<select class="uk-select" name="kategori" id="kategori">
-									<option value="0" disabled>-- Pilih Kategori Layanan --</option>
+									<option value="10" selected>-- Pilih Kategori Layanan --</option>
 									<?php foreach ($data_layanan as $i) : ?>
 										<option value="<?= $i->id ?>"><?= $i->nama ?></option>
 									<?php endforeach ?>
 								</select>
 							</div>
-						</div>
+						</div> -->
 
 						<div class="uk-modal-footer uk-text-right">
 							<button class="uk-button uk-button-default uk-modal-close" id="kembalikeawal" type="button">Kembali</button>

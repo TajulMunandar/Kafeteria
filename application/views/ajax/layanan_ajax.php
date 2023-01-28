@@ -3,12 +3,13 @@
 		<thead>
 			<tr>
 				<th>NO</th>
+				<th>NAMA</th>
 				<th>KECAMATAN</th>
 				<th>LOKASI</th>
 				<th>KETERANGAN</th>
 				<th>LATITUDE</th>
 				<th>LONGITUDE</th>
-				<th>KATEGORI</th>
+				<!-- <th>KATEGORI</th> -->
 				<th>AKSI</th>
 			</tr>
 		</thead>
@@ -23,14 +24,15 @@
 
 					<tr>
 						<td width="40px"><?= $no ?></td>
+						<td><?= $r->nama ?></td>
 						<td><?= $r->kecamatan ?></td>
 						<td><?= $r->lokasi ?></td>
 						<td><?= $r->keterangan ?></td>
 						<td><?= $r->latitude ?></td>
 						<td><?= $r->longitude ?></td>
-						<td><?= $r->nama ?></td>
+						<!-- <td><?= $r->nama ?></td> -->
 						<td>
-							<a href="#" class="uk-icon-link uk-margin-small-right" id="formedit" uk-icon="file-edit" data-id="<?= $r->id ?>" data-kecamatan="<?= $r->kecamatan ?>" data-lokasi="<?= $r->lokasi ?>" data-latitude="<?= $r->latitude ?>" data-longitude="<?= $r->longitude ?>" data-keterangan="<?= $r->keterangan ?>" data-kategori="<?= $r->kategori ?>"></a>
+							<a href="#" class="uk-icon-link uk-margin-small-right" id="formedit" uk-icon="file-edit" data-id="<?= $r->id ?>" data-kecamatan="<?= $r->kecamatan ?>" data-lokasi="<?= $r->lokasi ?>" data-nama="<?= $r->nama ?>" data-latitude="<?= $r->latitude ?>" data-longitude="<?= $r->longitude ?>" data-keterangan="<?= $r->keterangan ?>" data-kategori="<?= $r->kategori ?>"></a>
 							<a href="#" class="uk-icon-link" uk-icon="trash" id="hapusdata" data-id="<?= $r->id ?>" data-kecamatan="<?= $r->kecamatan ?>"></a>
 
 						</td>
@@ -52,7 +54,9 @@
 </ul>
 
 <script>
-	$(document).ready(function() {
+	<?php if (!empty($data_layanan)) :
+		echo ("$(document).ready(function() {
 		$('#table_layanan').DataTable();
-	});
+	});");
+	endif; ?>
 </script>

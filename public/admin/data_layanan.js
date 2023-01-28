@@ -55,6 +55,7 @@
  		$('#formsimpandaneditdata').show().fadeIn(3000);
  		$('#tampillayanansemua').hide().fadeOut(3000);
 
+ 		$('#nama').val("");
  		$('#kecamatan').val("");
  		$('#lokasi').val("");
  		$('#keterangan').val("");
@@ -73,6 +74,7 @@
  		e.preventDefault();
 
  		var id = $(this).data("id");
+ 		var nama = $(this).data("nama");
  		var kecamatan = $(this).data("kecamatan");
  		var lokasi = $(this).data("lokasi");
  		var latitude = $(this).data("latitude");
@@ -81,6 +83,7 @@
  		var kategori = $(this).data("kategori");
 
  		$('#id').val(id);
+ 		$('#nama').val(nama);
  		$('#kecamatan').val(kecamatan);
  		$('#lokasi').val(lokasi);
  		$('#keterangan').val(keterangan);
@@ -100,6 +103,7 @@
  	$('body').on('submit', '#submitdata', function (e) {
  		e.preventDefault();
 
+ 		var nama = $('#nama').val();
  		var kecamatan = $('#kecamatan').val();
  		var lokasi = $('#lokasi').val();
  		var keterangan = $('#keterangan').val();
@@ -118,6 +122,16 @@
  		} else if (lokasi == "") {
  			UIkit.notification({
  				message: '<span uk-icon="icon: close"></span> Lokasi masih Kosong!',
+ 				status: 'danger',
+ 				pos: 'top-right',
+ 				timeout: 1000,
+ 			});
+
+ 			$('#lokasi').focus();
+
+ 		} else if (nama == "") {
+ 			UIkit.notification({
+ 				message: '<span uk-icon="icon: close"></span> Nama masih Kosong!',
  				status: 'danger',
  				pos: 'top-right',
  				timeout: 1000,
@@ -152,15 +166,6 @@
 
  			$('#longitude').focus();
 
- 		} else if (kategori == "0") {
- 			UIkit.notification({
- 				message: '<span uk-icon="icon: close"></span> kategori masih Kosong!',
- 				status: 'danger',
- 				pos: 'top-right',
- 				timeout: 1000,
- 			});
-
- 			$('#kategori').focus();
  		} else {
  			$.ajax({
  				url: base_url + 'savedatalayanan',

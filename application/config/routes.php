@@ -65,11 +65,11 @@ $route['savedatalayanan'] = 'administrator/saveDataLayanan';
 $route['editdatalayanan'] = 'administrator/editDataLayanan';
 $route['hapuslayanan'] = 'administrator/hapusLayanan';
 
-$route['kategori'] = 'administrator/kategori';
-$route['tampilkategori'] = 'administrator/tampilKategori';
-$route['savedatakategori'] = 'administrator/saveDataKategori';
-$route['editdatakategori'] = 'administrator/editDataKategori';
-$route['hapuskategori'] = 'administrator/hapusKategori';
+// $route['kategori'] = 'administrator/kategori';
+// $route['tampilkategori'] = 'administrator/tampilKategori';
+// $route['savedatakategori'] = 'administrator/saveDataKategori';
+// $route['editdatakategori'] = 'administrator/editDataKategori';
+// $route['hapuskategori'] = 'administrator/hapusKategori';
 
 $route['tampilusers'] = 'administrator/tampilUsers';
 $route['savedatausers'] = 'administrator/saveDataUsers';

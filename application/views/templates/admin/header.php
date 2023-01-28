@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Halaman utama </title>
+	<title>Website Kedai Kopi Kafeteria</title>
 
 	<meta charset="UTF-8">
 	<meta name="description" content="Clean and responsive administration panel">
@@ -36,7 +36,7 @@
 	</script>
 	<style typle="text/css">
 		#mapid {
-			height: 600px;
+			height: 75vh;
 		}
 	</style>
 </head>
@@ -45,12 +45,12 @@
 	<div id="sidebar" class="tm-sidebar-left uk-background-default">
 		<center>
 			<div class="user">
-				<div id="name" class="uk-text-truncate"><?php echo $this->session->userdata('nama') ?></div>
+				<div id="name" class="uk-text-truncate"><?php echo strtoupper($this->session->userdata('nama')) ?></div>
 				<span id="status" data-enabled="true" data-online-text="Online" data-away-text="Away" data-interval="10000" class="uk-margin-top uk-label uk-label-success"></span>
 			</div>
 			<br />
 		</center>
-		<ul class="uk-nav uk-nav-default " >
+		<ul class="uk-nav uk-nav-default ">
 
 			<li class="uk-nav-header fw-bold">
 				MENU
@@ -61,10 +61,10 @@
 									} ?>><a href="<?= base_url('administrator') ?>" class="fw-bold"><span data-uk-icon="icon: home" class="uk-margin-small-right"></span>BERANDA</a></li>
 			<li <?php if ($menu == "layanan") {
 				?> class="uk-active" <?php
-									} ?>><a href="<?= base_url('administrator/data') ?>" class="fw-bold"><span data-uk-icon="icon:  world" class="uk-margin-small-right"></span>DATA PLN</a></li>
-			<li <?php if ($menu == "kategori") {
-				?> class="uk-active" <?php
-									} ?>><a href="<?= base_url('administrator/kategori') ?>" class="fw-bold"><span data-uk-icon="icon:  list" class="uk-margin-small-right"></span>DATA KATEGORI</a></li>
+									} ?>><a href="<?= base_url('administrator/data') ?>" class="fw-bold"><span data-uk-icon="icon:  location" class="uk-margin-small-right"></span>DATA LOKASI</a></li>
+			<!-- <li <?php if ($menu == "kategori") {
+						?> class="uk-active" <?php
+											} ?>><a href="<?= base_url('administrator/kategori') ?>" class="fw-bold"><span data-uk-icon="icon:  list" class="uk-margin-small-right"></span>DATA KATEGORI</a></li> -->
 			<!-- <li <?php if ($menu == "biodata") {
 						?> class="uk-active" <?php
 											} ?>><a href="<?= base_url('administrator/biodata') ?>"> <span data-uk-icon="icon: file-text" class="uk-margin-small-right"></span>BIODATA</a></li> -->
@@ -78,7 +78,7 @@
 			}
 
 			?>
-			<li><a href="#" class="fs-6 m-auto fw-bold" id="logout"><span class="ion-android-exit uk-margin-small-right"></span> LOGOUT</a></li>
+			<li><a href="" class="fw-bold" id="logout"><span data-uk-icon="icon: sign-out" class="uk-margin-small-right"></span>LOGOUT</a></li>
 
 
 		</ul>

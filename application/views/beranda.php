@@ -1,4 +1,4 @@
-<div class="content-padder content-background " >
+<div class="content-padder content-background ">
     <div class="uk-section-small uk-section-default header">
         <div class="uk-container uk-container-large">
             <h2><span class="ion-speedometer"></span> Beranda</h2>
@@ -9,7 +9,7 @@
     </div>
     <div class="uk-section-small mt-3">
         <div class="uk-container uk-container-large ">
-            <div id="mapid" style="z-index: 0; height: 85vh;"></div>
+            <div id="mapid" style="z-index: 0;"></div>
         </div>
     </div>
 
@@ -57,50 +57,26 @@
             collapsed: true,
         }));
 
-        var pasang_baru = L.icon({
-            iconUrl: '<?= base_url('public/icon/pasang.svg') ?>',
-            iconSize: [30, 30]
+        var kafeteria = L.icon({
+            iconUrl: '<?= base_url('public/icon/kafeteria_map.png') ?>',
+            iconSize: [40, 40]
         });
-
-        var sambung_sementara = L.icon({
-            iconUrl: '<?= base_url('public/icon/sambung.svg') ?>',
-            iconSize: [30, 30]
-        });
-
-        var ubah_daya = L.icon({
-            iconUrl: '<?= base_url('public/icon/ubah.svg') ?>',
-            iconSize: [30, 30]
-        });
-
-        var notice = L.icon({
-            iconUrl: '<?= base_url('public/icon/notice.png') ?>',
-            iconSize: [30, 30]
-        });
-
         var icons = "";
         for (i in data) {
+            var nama = data[i].nama;
             var kecamatan = data[i].kecamatan;
             var lokasi = data[i].lokasi;
             var tempat = data[i].tempat;
             var keterangan = data[i].keterangan;
             var kategori = data[i].kategori;
             var nama = data[i].nama;
-
-            if (kategori == "1") {
-                icons = pasang_baru;
-            } else if (kategori == "2") {
-                icons = sambung_sementara;
-            } else if (kategori == "3") {
-                icons = ubah_daya;
-            } else {
-                icons = notice;
-            }
+            icons = kafeteria;
 
             var marker = new L.Marker(new L.latLng(lokasi), {
                 title: kecamatan,
                 icon: icons
             });
-            marker.bindPopup('<b>Kecamatan: ' + kecamatan + ' <br> Lokasi: ' + tempat + '<br> Keterangan: ' + keterangan + '<br> Layanan: ' + nama + '</b>');
+            marker.bindPopup('<b>nama: ' + nama + '<br> Kecamatan: ' + kecamatan + ' <br> Lokasi: ' + tempat + '<br> Keterangan: ' + keterangan);
             markersLayer.addLayer(marker);
         }
     </script>

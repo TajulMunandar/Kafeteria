@@ -18,7 +18,7 @@ class Administrator extends CI_Controller
 		$this->load->view('templates/admin/header', $atas);
 
 		$data = array(
-			'judul' => 'Pemetaan Lokasi Pelayanan PLN',
+			'judul' => 'Pemetaan Lokasi Kedai Kopi Kafeteria',
 			'layanan' => $this->m_model->data_layanan(),
 
 		);
@@ -26,18 +26,18 @@ class Administrator extends CI_Controller
 		$this->load->view('templates/admin/footer');
 	}
 
-	public function biodata()
-	{
-		$atas = array(
-			'menu' => 'biodata'
-		);
-		$this->load->view('templates/admin/header', $atas);
-		$data = array(
-			'judul' => 'Biodata Penulis',
-		);
-		$this->load->view('biodata', $data);
-		$this->load->view('templates/admin/footer');
-	}
+	// public function biodata()
+	// {
+	// 	$atas = array(
+	// 		'menu' => 'biodata'
+	// 	);
+	// 	$this->load->view('templates/admin/header', $atas);
+	// 	$data = array(
+	// 		'judul' => 'Biodata Penulis',
+	// 	);
+	// 	$this->load->view('biodata', $data);
+	// 	$this->load->view('templates/admin/footer');
+	// }
 
 	public function data()
 	{
@@ -46,7 +46,7 @@ class Administrator extends CI_Controller
 		);
 		$this->load->view('templates/admin/header', $atas);
 		$data = array(
-			'judul' => 'Data Layanan PLN',
+			'judul' => 'Data Layanan Kedai Kopi Kafeteria',
 			'data_layanan' => $this->m_model->data_kategori()
 		);
 		$this->load->view('data_layanan', $data);
@@ -62,7 +62,7 @@ class Administrator extends CI_Controller
 		$limit = 1000;
 		$offset = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 		$config['base_url'] = base_url('administrator/tampillayanan');
-		$config['total_rows'] = $this->m_model->get_tampil_layanan($limit, $offset, $search, $count = true, 'pln', 'kecamatan', 'id');
+		$config['total_rows'] = $this->m_model->get_tampil_layanan($limit, $offset, $search, $count = true, 'kafeteria', 'kecamatan', 'id');
 		$config['per_page'] = $limit;
 		$config['uri_segment'] = 3;
 		$config['num_links'] = 3;
@@ -85,7 +85,7 @@ class Administrator extends CI_Controller
 
 		$this->pagination->initialize($config);
 
-		$data['data_layanan'] = $this->m_model->get_tampil_layanan($limit, $offset, $search, $count = false, 'pln', 'kecamatan', 'id');
+		$data['data_layanan'] = $this->m_model->get_tampil_layanan($limit, $offset, $search, $count = false, 'kafeteria', 'kecamatan', 'id');
 		$data['pagelinks'] = $this->pagination->create_links();
 		$this->load->view('ajax/layanan_ajax', $data);
 	}
@@ -93,6 +93,7 @@ class Administrator extends CI_Controller
 
 	public function saveDataLayanan()
 	{
+		$nama = $this->input->post('nama', TRUE);
 		$kecamatan = $this->input->post('kecamatan', TRUE);
 		$lokasi = $this->input->post('lokasi', TRUE);
 		$keterangan = $this->input->post('keterangan');
@@ -104,6 +105,7 @@ class Administrator extends CI_Controller
 		$longitude = trim($long);
 
 		$data = array(
+			'nama' => $nama,
 			'kecamatan' => $kecamatan,
 			'lokasi' => $lokasi,
 			'latitude' => $latitude,
@@ -111,10 +113,11 @@ class Administrator extends CI_Controller
 			'keterangan' => $keterangan,
 			'kategori' => $kategori,
 		);
-		$this->m_model->simpan('pln', $data);
+		$this->m_model->simpan('kafeteria', $data);
 	}
 	public function editDataLayanan()
 	{
+		$nama = $this->input->post('nama', TRUE);
 		$id = $this->input->post('id', TRUE);
 		$kecamatan = $this->input->post('kecamatan', TRUE);
 		$lokasi = $this->input->post('lokasi', TRUE);
@@ -126,6 +129,7 @@ class Administrator extends CI_Controller
 		$latitude = trim($lat);
 		$longitude = trim($long);
 		$data = array(
+			'nama' => $nama,
 			'kecamatan' => $kecamatan,
 			'lokasi' => $lokasi,
 			'latitude' => $latitude,
@@ -133,58 +137,58 @@ class Administrator extends CI_Controller
 			'keterangan' => $keterangan,
 			'kategori' => $kategori,
 		);
-		$this->m_model->editdata('pln', 'id', $id, $data);
+		$this->m_model->editdata('kafeteria', 'id', $id, $data);
 	}
 
 	public function hapusLayanan()
 	{
 		$id = $this->input->post('id');
 
-		$this->m_model->hapus('pln', $id, 'id');
+		$this->m_model->hapus('kafeteria', $id, 'id');
 	}
 	//
-	public function kategori()
-	{
-		$atas = array(
-			'menu' => 'kategori'
-		);
-		$this->load->view('templates/admin/header', $atas);
-		$data = array(
-			'judul' => 'Data Kategori'
-		);
-		$this->load->view('data_kategori', $data);
-		$this->load->view('templates/admin/footer');
-	}
-	public function tampilKategori()
-	{
-		$data['data_kategori'] = $this->m_model->data_kategori();
-		$this->load->view('ajax/kategori_ajax', $data);
-	}
-	public function saveDataKategori()
-	{
-		$kategori = $this->input->post('namakategori', TRUE);
+	// public function kategori()
+	// {
+	// 	$atas = array(
+	// 		'menu' => 'kategori'
+	// 	);
+	// 	$this->load->view('templates/admin/header', $atas);
+	// 	$data = array(
+	// 		'judul' => 'Data Kategori'
+	// 	);
+	// 	$this->load->view('data_kategori', $data);
+	// 	$this->load->view('templates/admin/footer');
+	// }
+	// public function tampilKategori()
+	// {
+	// 	$data['data_kategori'] = $this->m_model->data_kategori();
+	// 	$this->load->view('ajax/kategori_ajax', $data);
+	// }
+	// public function saveDataKategori()
+	// {
+	// 	$kategori = $this->input->post('namakategori', TRUE);
 
-		$data = array(
-			'nama' => $kategori,
-		);
-		$this->m_model->simpan('kategori', $data);
-	}
-	public function editDataKategori()
-	{
-		$id = $this->input->post('id', TRUE);
-		$kategori = $this->input->post('namakategori', TRUE);
-		$data = array(
-			'nama' => $kategori,
-		);
-		$this->m_model->editdata('kategori', 'id', $id, $data);
-	}
+	// 	$data = array(
+	// 		'nama' => $kategori,
+	// 	);
+	// 	$this->m_model->simpan('kategori', $data);
+	// }
+	// public function editDataKategori()
+	// {
+	// 	$id = $this->input->post('id', TRUE);
+	// 	$kategori = $this->input->post('namakategori', TRUE);
+	// 	$data = array(
+	// 		'nama' => $kategori,
+	// 	);
+	// 	$this->m_model->editdata('kategori', 'id', $id, $data);
+	// }
 
-	public function hapuskategori()
-	{
-		$id = $this->input->post('id');
+	// public function hapuskategori()
+	// {
+	// 	$id = $this->input->post('id');
 
-		$this->m_model->hapus('kategori', $id, 'id');
-	}
+	// 	$this->m_model->hapus('kategori', $id, 'id');
+	// }
 	// User
 	public function users()
 	{

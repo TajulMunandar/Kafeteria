@@ -3,8 +3,8 @@ class M_model extends CI_Model
 {
      public function data_layanan()
      {
-          return $this->db->select('pln.id, kategori, kecamatan, keterangan, latitude, longitude, lokasi, kategori.nama')
-               ->from('pln')->join('kategori', 'pln.kategori = kategori.id', 'left')
+          return $this->db->select('kafeteria.id, kafeteria.nama, kategori, kecamatan, keterangan, latitude, longitude, lokasi, kategori.nama as kategori')
+               ->from('kafeteria')->join('kategori', 'kafeteria.kategori = kategori.id', 'left')
                ->get()->result();
      }
      public function data_kategori()
@@ -17,9 +17,9 @@ class M_model extends CI_Model
      public function get_tampil_layanan($limit, $offset, $search, $count, $tabel, $namacari, $urut)
      {
 
-          $this->db->select('pln.id, kategori, kecamatan, keterangan, latitude, longitude, lokasi, kategori.nama');
+          $this->db->select('kafeteria.id, kafeteria.nama, kategori, kecamatan, keterangan, latitude, longitude, lokasi, kategori.nama as kategori');
           $this->db->from($tabel)
-               ->join('kategori', 'pln.kategori = kategori.id', 'left');
+               ->join('kategori', 'kafeteria.kategori = kategori.id', 'left');
           if ($search) {
                $keyword = $search['keyword'];
                if ($keyword) {

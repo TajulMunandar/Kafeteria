@@ -35,7 +35,7 @@ $(document).ready(function () {
 						$('#password').focus();
 					} else {
 						swal({
-							title: "Selamat datang!" + hasil[0],
+							title: "Selamat datang!",
 							text: "Gunakan aplikasi ini dengan akhlak yang baik",
 							icon: "success",
 							button: "ya",
